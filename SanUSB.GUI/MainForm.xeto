@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form
+	xmlns="http://schema.picoe.ca/eto.forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="SanUSB GUI"
+	ClientSize="600, 500"
+  Resizable="False"
+  Maximizable="False"
+	>
+
+  <StackLayout HorizontalContentAlignment="Stretch" Padding="12" Spacing="8" MinimumSize="400,350">
+    <ImageView Height="200" ID="logoImage"></ImageView>
+
+    <TableLayout Spacing="8,0">
+      <TableRow>
+        <TableCell ScaleWidth="True">
+          <TextBox ID="tb1" Text="{Binding Path}"></TextBox>
+        </TableCell>
+        <TableCell ScaleWidth="False">
+          <Button Click="Browse_Click">Pr&amp;ocurar</Button>
+        </TableCell>
+      </TableRow>
+    </TableLayout>
+
+    <StackLayout Orientation="Horizontal" Spacing="8">
+      <Button Click="Reset_Click">R&amp;esetar</Button>
+      <Button Click="Write_Click">G&amp;ravar</Button>
+      <Button Click="WriteReset_Click">Gravar e Rese&amp;tar</Button>
+      <Button Click="OpenFile_Click">Abrir Arqu&amp;ivo</Button>
+
+    </StackLayout>
+
+    <TextArea ID="txtLog" Height="200" ReadOnly="True"></TextArea>
+
+    <Label Text="{Binding Nome}"></Label>
+  </StackLayout>
+  <!--
+  <Form.Menu>
+		<MenuBar>
+			<ButtonMenuItem Text="F&amp;ile">
+				<Command x:Name="clickCommand" MenuText="Click Me!" ToolBarText="Click Me!" Executed="HandleClickMe" />
+			</ButtonMenuItem>
+			<MenuBar.ApplicationItems>
+				<ButtonMenuItem Text="Preferences.." Shortcut="{On Control+O, Mac=Application+Comma}" />
+			</MenuBar.ApplicationItems>
+			<MenuBar.QuitItem>
+				<ButtonMenuItem Text="Quit!" Shortcut="CommonModifier+Q" Click="HandleQuit" />
+			</MenuBar.QuitItem>
+		</MenuBar>
+	</Form.Menu>
+	<Form.ToolBar>
+		<ToolBar>
+			<x:Reference Name="clickCommand"/>
+		</ToolBar>
+	</Form.ToolBar>
+  -->
+</Form>
