@@ -8,9 +8,12 @@ namespace SanUSB.GUI
 {
 
     public delegate void InjectionDelegate(string path);
+    public delegate string StartProcessDelegate(string path, string args);
 
-    public class InjectionPOG
+    public static class InjectionPOG
     {
-        public static InjectionDelegate Delegate { get; set; }
+        public static InjectionDelegate OpenFile { get; set; }
+
+        public static StartProcessDelegate StartProcess { get; set; }
     }
 }

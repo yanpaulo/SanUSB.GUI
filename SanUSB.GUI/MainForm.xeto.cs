@@ -4,6 +4,7 @@ using Eto.Forms;
 using Eto.Drawing;
 using Eto.Serialization.Xaml;
 using System.ComponentModel;
+using static SanUSB.GUI.InjectionPOG;
 
 namespace SanUSB.GUI
 {
@@ -28,10 +29,11 @@ namespace SanUSB.GUI
     {
         private TextArea textArea;
         private ViewModel viewModel;
-
+        private string sanUsbPath = @"C:\Program Files (x86)\SanUSB\sanusb.exe";
         public MainForm()
         {
             XamlReader.Load(this);
+            
             //Loads image from path
             FindChild<ImageView>("logoImage").Image =
                 (Image)new ImageConverter().ConvertFromString("Images/sanudb_lcd.jpg");
@@ -51,19 +53,16 @@ namespace SanUSB.GUI
             }
         }
 
-        public void Reset_Click(object sender, EventArgs e) => textArea.Append($"[{DateTime.Now}] Controlador reinicializado.\n");
+        public void Reset_Click(object sender, EventArgs e) =>
+            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-r")}\n");
 
-        public void Write_Click(object sender, EventArgs e) => textArea.Append($"[{DateTime.Now}] Programa gravado.\n");
+        public void Write_Click(object sender, EventArgs e) =>
+            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-w \"{viewModel.Path}\"")}\n");
 
-        public void WriteReset_Click(object sender, EventArgs e) => textArea.Append($"[{DateTime.Now}] Programa gravado e controlador reinicializado.\n");
+        public void WriteReset_Click(object sender, EventArgs e) =>
+            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-w \"{viewModel.Path}\" -r")}\n");
 
-        public void OpenFile_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(viewModel.Path))
-                InjectionPOG.Delegate(viewModel.Path);
-            else
-                MessageBox.Show("Sem arquivo selecionado.");
-        }
+        public void OpenFile_Click(object sender, EventArgs e) => InjectionPOG.OpenFile(viewModel.Path);
 
     }
 }
