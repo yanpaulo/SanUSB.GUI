@@ -18,9 +18,21 @@ namespace SanUSB.GUI
             set
             {
                 _path = value;
+                HasFile = !string.IsNullOrEmpty(_path);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Path"));
             }
         }
+
+        private bool _hasFile;
+
+        public bool HasFile
+        {
+            get { return _hasFile; }
+            set { _hasFile = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HasFile"));
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
@@ -61,7 +73,17 @@ namespace SanUSB.GUI
         public void WriteReset_Click(object sender, EventArgs e) =>
             textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\" -r")}\n");
 
-        public void OpenFile_Click(object sender, EventArgs e) => InjectionPOG.OpenFile(viewModel.Path);
+        public void OpenFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFile(viewModel.Path);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro.");
+            }
+        }
 
     }
 }

@@ -24,9 +24,9 @@
 
     <StackLayout Orientation="Horizontal" Spacing="8">
       <Button Click="Reset_Click">R&amp;esetar</Button>
-      <Button Click="Write_Click">G&amp;ravar</Button>
-      <Button Click="WriteReset_Click">Gravar e Rese&amp;tar</Button>
-      <Button Click="OpenFile_Click">Abrir Arqu&amp;ivo</Button>
+      <Button Click="Write_Click" Enabled="{Binding HasFile}">G&amp;ravar</Button>
+      <Button Click="WriteReset_Click" Enabled="{Binding HasFile}">Gravar e Rese&amp;tar</Button>
+      <Button Click="OpenFile_Click" Enabled="{Binding HasFile}">Abrir Arqu&amp;ivo</Button>
 
     </StackLayout>
 
