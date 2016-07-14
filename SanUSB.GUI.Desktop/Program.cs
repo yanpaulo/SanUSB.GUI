@@ -2,6 +2,7 @@
 using Eto;
 using Eto.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace SanUSB.GUI.Desktop
 {
@@ -35,6 +36,7 @@ namespace SanUSB.GUI.Desktop
                 p.WaitForExit();
                 return ret;
             };
+            InjectionPOG.ToolPath = File.ReadAllText("tool-path.txt");
         }
     }
 }

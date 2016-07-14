@@ -29,7 +29,6 @@ namespace SanUSB.GUI
     {
         private TextArea textArea;
         private ViewModel viewModel;
-        private string sanUsbPath = @"C:\Program Files (x86)\SanUSB\sanusb.exe";
         public MainForm()
         {
             XamlReader.Load(this);
@@ -54,13 +53,13 @@ namespace SanUSB.GUI
         }
 
         public void Reset_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-r")}\n");
+            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-r")}\n");
 
         public void Write_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-w \"{viewModel.Path}\"")}\n");
+            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\"")}\n");
 
         public void WriteReset_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(sanUsbPath, $"-w \"{viewModel.Path}\" -r")}\n");
+            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\" -r")}\n");
 
         public void OpenFile_Click(object sender, EventArgs e) => InjectionPOG.OpenFile(viewModel.Path);
 

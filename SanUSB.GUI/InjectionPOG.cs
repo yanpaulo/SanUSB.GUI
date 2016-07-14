@@ -15,5 +15,7 @@ namespace SanUSB.GUI
         public static InjectionDelegate OpenFile { get; set; }
 
         public static StartProcessDelegate StartProcess { get; set; }
+
+        public static string ToolPath { get; set; }
     }
 }
