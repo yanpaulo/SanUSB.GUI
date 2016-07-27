@@ -58,8 +58,8 @@ namespace SanUSB.GUI
             
             //Loads image from path
             FindChild<ImageView>("logoImage").Image =
-                (Image)new ImageConverter().ConvertFromString("Images/sanudb_lcd.jpg");
-
+                (Image)new ImageConverter().ConvertFromString("Images/logo-full.png");
+            
             //Set properties and DataContext
             textArea = FindChild<TextArea>("txtLog");
             DataContext = viewModel = new ViewModel();
