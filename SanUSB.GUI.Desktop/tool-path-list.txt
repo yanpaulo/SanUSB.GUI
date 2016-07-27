@@ -1,0 +1,2 @@
+﻿C:\Program Files (x86)\SanUSB\sanusb.exe
+C:\Program Files\SanUSB\sanusb.exe

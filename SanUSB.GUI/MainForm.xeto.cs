@@ -54,8 +54,13 @@ namespace SanUSB.GUI
         private ViewModel viewModel;
         public MainForm()
         {
+            if (ToolPath == null)
+            {
+                MessageBox.Show("Não foi possível localizar a ferramenta SanUSB");
+                Application.Instance.Quit();
+            }
+
             XamlReader.Load(this);
-            
             //Loads image from path
             FindChild<ImageView>("logoImage").Image =
                 (Image)new ImageConverter().ConvertFromString("Images/logo-full.png");
@@ -64,7 +69,7 @@ namespace SanUSB.GUI
             textArea = FindChild<TextArea>("txtLog");
             DataContext = viewModel = new ViewModel();
         }
-
+       
         public void Browse_Click(object sender, EventArgs e)
         {
             var dialog = new OpenFileDialog();
@@ -98,9 +103,10 @@ namespace SanUSB.GUI
 
         private void AppendStatus(object sender, string status)
         {
+            textArea.Focus();
             textArea.Append(status);
             textArea.CaretIndex = textArea.Text.Length;
-            (sender as Control).Focus();
+            //(sender as Control).Focus();
         }
 
     }

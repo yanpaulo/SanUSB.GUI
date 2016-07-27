@@ -17,6 +17,7 @@ namespace SanUSB.GUI.Desktop
 
         private static void InitPOG()
         {
+            InjectionPOG.ToolPath = FindToolPath();
             InjectionPOG.OpenFile = (f) => System.Diagnostics.Process.Start(f);
             InjectionPOG.StartProcess = (f, a) =>
             {
@@ -36,7 +37,33 @@ namespace SanUSB.GUI.Desktop
                 p.WaitForExit();
                 return ret;
             };
-            InjectionPOG.ToolPath = File.ReadAllText("tool-path.txt");
+        }
+
+        private static string FindToolPath()
+        {
+            string path = null;
+            if (File.Exists("tool-path.txt"))
+            {
+                path = File.ReadAllText("tool-path.txt");
+            }
+            else
+            {
+                var lines = File.ReadAllLines("tool-path-list.txt");
+                foreach (var item in lines)
+                {
+                    if (File.Exists(item))
+                    {
+                        path = item;
+
+                        var f = File.CreateText("tool-path.txt");
+                        f.Write(path);
+                        f.Close();
+
+                    }
+                }
+
+            }
+            return path;
         }
     }
 }
