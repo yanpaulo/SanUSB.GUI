@@ -61,7 +61,7 @@
     <Content Include="Images\logo-full.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sanusb.ico">
+    <Content Include="icon\sanusb.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Eto;
 using Eto.Forms;
 using System.Diagnostics;
@@ -48,18 +49,10 @@ namespace SanUSB.GUI.Desktop
             }
             else
             {
-                var lines = File.ReadAllLines("tool-path-list.txt");
-                foreach (var item in lines)
+                path = File.ReadAllLines("tool-path-list.txt").FirstOrDefault(l => File.Exists(l));
+                if (path != null)
                 {
-                    if (File.Exists(item))
-                    {
-                        path = item;
-
-                        var f = File.CreateText("tool-path.txt");
-                        f.Write(path);
-                        f.Close();
-
-                    }
+                    File.WriteAllText("tool-path.txt", path);
                 }
 
             }

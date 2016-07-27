@@ -7,7 +7,7 @@
   Resizable="False"
   Maximizable="False"
   Topmost="{Binding Topmost}"
-  Icon="sanusb.ico"
+  Icon="icon/sanusb.ico"
 	>
 
   <StackLayout HorizontalContentAlignment="Stretch" Padding="12" Spacing="8" MinimumSize="400,350">
