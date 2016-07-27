@@ -3,9 +3,10 @@
 	xmlns="http://schema.picoe.ca/eto.forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="SanUSB GUI"
-	ClientSize="600, 500"
+	ClientSize="600, 520"
   Resizable="False"
   Maximizable="False"
+  Topmost="{Binding Topmost}"
 	>
 
   <StackLayout HorizontalContentAlignment="Stretch" Padding="12" Spacing="8" MinimumSize="400,350">
@@ -30,9 +31,9 @@
 
     </StackLayout>
 
-    <TextArea ID="txtLog" Height="200" ReadOnly="True"></TextArea>
+    <TextArea ID="txtLog" Height="200" ReadOnly="True" ></TextArea>
 
-    <Label Text="{Binding Nome}"></Label>
+    <CheckBox Text="To&amp;po" Checked="{Binding Topmost}"></CheckBox>
   </StackLayout>
   <!--
   <Form.Menu>

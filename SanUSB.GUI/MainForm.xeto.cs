@@ -33,6 +33,17 @@ namespace SanUSB.GUI
             }
         }
 
+        private bool _topmost = true;
+
+        public bool Topmost
+        {
+            get { return _topmost; }
+            set { _topmost = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Topmost"));
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
@@ -65,13 +76,13 @@ namespace SanUSB.GUI
         }
 
         public void Reset_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-r")}\n");
+            AppendStatus(sender, $"[{DateTime.Now}] {StartProcess(ToolPath, $"-r")}\n");
 
         public void Write_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\"")}\n");
+            AppendStatus(sender, $"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\"")}\n");
 
         public void WriteReset_Click(object sender, EventArgs e) =>
-            textArea.Append($"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\" -r")}\n");
+            AppendStatus(sender, $"[{DateTime.Now}] {StartProcess(ToolPath, $"-w \"{viewModel.Path}\" -r")}\n");
 
         public void OpenFile_Click(object sender, EventArgs e)
         {
@@ -83,6 +94,13 @@ namespace SanUSB.GUI
             {
                 MessageBox.Show("Erro.");
             }
+        }
+
+        private void AppendStatus(object sender, string status)
+        {
+            textArea.Append(status);
+            textArea.CaretIndex = textArea.Text.Length;
+            (sender as Control).Focus();
         }
 
     }
