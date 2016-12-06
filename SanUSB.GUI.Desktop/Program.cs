@@ -42,20 +42,7 @@ namespace SanUSB.GUI.Desktop
 
         private static string FindToolPath()
         {
-            string path = null;
-            if (File.Exists("tool-path.txt"))
-            {
-                path = File.ReadAllText("tool-path.txt");
-            }
-            else
-            {
-                path = File.ReadAllLines("tool-path-list.txt").FirstOrDefault(l => File.Exists(l));
-                if (path != null)
-                {
-                    File.WriteAllText("tool-path.txt", path);
-                }
-
-            }
+            string path = File.ReadAllLines("tool-path-list.txt").FirstOrDefault(l => File.Exists(l));
             return path;
         }
     }
